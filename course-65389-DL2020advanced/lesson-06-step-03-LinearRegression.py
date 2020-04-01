@@ -57,3 +57,21 @@ class LinearRegression:
 		Думаю, тут все понятно. Сделайте свои предсказания :)
 		"""
 		return X.dot(self.W)+self.b #  YOUR_CODE
+
+
+# task 1
+model = LinearRegression()  # create instance
+mse = model.fit(X_train, Y_train)  # train model with default parameters
+pd.DataFrame(mse, dtype='float').plot()  # plot MSE
+
+# task 2
+X, y = datasets.make_regression(n_targets=3, n_features=2, noise=10, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
+# train model with default parameters
+model_mse = LinearRegression()
+mse = model_mse.fit(X_train, Y_train)
+pd.DataFrame(mse, dtype='float').plot()
+# using MAE
+model_mae = LinearRegression(l_p_metric=1)
+mae = model_mae.fit(X_train, Y_train)
+pd.DataFrame(mae, dtype='float').plot()

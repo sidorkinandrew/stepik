@@ -61,7 +61,6 @@ class LinearRegression:
         return metrics
 
     def predict(self, X):
-        """
-            Думаю, тут все понятно. Сделайте свои предсказания :)
-        """
         return X @ self.W+self.b
+
+
