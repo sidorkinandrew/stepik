@@ -5,7 +5,6 @@ import numpy as np
 ds_url = 'https://stepik.org/media/attachments/course/4852/titanic.csv'
 r = requests.get(ds_url)
 df = pd.read_csv(io.BytesIO(r.content))
-# number of columns/rows
+
 print(df.shape)
-# types of the columns
 print(df.dtypes)
