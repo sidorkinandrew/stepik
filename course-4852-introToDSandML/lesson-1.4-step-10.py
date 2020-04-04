@@ -8,4 +8,5 @@ df = pd.read_csv(io.BytesIO(r.content))
 # number of columns/rows
 print(df.shape)
 # types of the columns
-print(df.dtypes)
+for atype in set(df.dtypes):
+    print(atype, len(df.select_dtypes([atype]).columns))
