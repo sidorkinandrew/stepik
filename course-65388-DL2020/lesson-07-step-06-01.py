@@ -7,11 +7,11 @@ test_cases = {
                        },  # -1.877  # -1.897231611784638
     "TEST 2 (poly2)": {"func": lambda x: x ** 4 + 3 * x ** 3 + x ** 2 - 2 * x + 1.0,
                        "deriv": lambda x: 4 * x ** 3 + 9 * x ** 2 + 2 * x - 2.0,
-                       "start": 1, "answer": -1.8263671875000018, "low": -3, "high": 3,
+                       "start": 1, "answer": 0.3337, "low": -3, "high": 3,
                        },  # 0.33377777777777773
     "TEST 3 (poly3)": {"func": lambda x: x ** 6 + 3 * x ** 3 + x ** 2 - 2 * x + 1.0,
                       "deriv": lambda x: 6 * x ** 5 + 9 * x ** 2 + 2 * x - 2.0,
-                      "start": 1, "answer": -0.8897076231060604, "low": -3, "high": 3,
+                      "start": 1, "answer": 0.39437, "low": -3, "high": 3,
                       },  # 0.3943737373737375
     "TEST 4 (another poly)": {"func": lambda x: x ** 6 + x ** 4 - 10 * x ** 2,
                               "deriv": lambda x: 6 * x ** 5 + 4 * x ** 3 - 20 * x,
@@ -19,16 +19,16 @@ test_cases = {
                               },  # 1.234  # 1.23  # 1.226821473826445  # 1.2327070707070706
     "TEST 5 (another yet poly)": {"func": lambda x: x ** 6 + x ** 4 - 10 * x ** 2 - x,
                                   "deriv": lambda x: 6 * x ** 5 + 4 * x ** 3 - 20 * x - 1,
-                                  "start": 1, "answer": -1.218799321338385, "low": -2, "high": 2,
+                                  "start": 1, "answer": 1.2325151515151513, "low": -2, "high": 2,
                                   },  # 1.2325151515151513
     "TEST 6 (and another yet poly)": {"func": lambda x: x ** 20 + x ** 2 - 20 * x + 10,
                                       "deriv": lambda x: 20 * x ** 19 + 2 * x - 20,
-                                      "start": 1, "answer": 0.9944631865530289, "low": -1, "high": 2,
+                                      "start": 1, "answer": 1.0, "low": -1, "high": 2,
                                       },  # 0.994 # 0.9944531641016026 # 1.0003333333333333
     "TEST 7 (1 - exp(log^2(x)) with constants)": {
         "func": lambda x: 1 - 3 / 2 * 1 / x * np.exp(-(np.log(x)) ** 2 / 2 * (3 / 2) ** 2),
         "deriv": lambda x: (3 * np.exp(-9 / 8 * (np.log(x)) ** 2) * (4 + 9 * np.log(x))) / (8 * x ** 2),
-        "start": 1, "answer": 0.00025, "low": 0, "high": 2,
+        "start": 1, "answer": 0.6411318154091585, "low": 0, "high": 2,
     },  # 0.641  # 0.6255984124239972    #0.6411318154091585 # 0.6471414141414141
     "TEST 8 (|x|/x^2 - x + sqrt(-x) + (even polynom))": {
         "func": lambda x: 5 * np.abs(x) / x ** 2 - 0.5 * x + 0.1 * np.sqrt(-x) + 0.01 * x ** 2,
@@ -67,4 +67,4 @@ for idx, atest in enumerate(test_cases):
     deriv_func = test_cases[atest]["deriv"]
     res = grad_descent_v2(func, deriv_func, low=test_cases[atest]["low"], high=test_cases[atest]["high"],
                           callback=callback)
-    print("result:", round(res, 5))
+    print("result:", round(res, 5), "answer:", test_cases[atest]["answer"], "diff:", round(test_cases[atest]["answer"] - res, 5))
